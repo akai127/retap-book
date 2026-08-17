@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Booked — Retap Media</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../assets/retap-favicon.png">
+<style>
+  :root{
+    --ink:#0A0A0B; --panel:#131311; --hairline:rgba(212,175,55,.18);
+    --gold:#D4AF37; --gold-light:#F1D77E; --champagne:#E3CD96;
+    --body:#E9E5DB; --muted:#9C968A; --green:#5BC17E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--ink);color:var(--body);
+    font-family:'Archivo','Segoe UI',Arial,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    padding:40px 20px 60px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+  .brand img{width:42px;height:42px}
+  .brand span{font-family:'IBM Plex Mono',Consolas,monospace;font-size:13px;letter-spacing:.28em;color:var(--gold-light)}
+  main{width:min(680px,100%)}
+  .booked{
+    text-align:center;margin-bottom:34px;
+  }
+  .booked .tick{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:56px;height:56px;border-radius:50%;
+    border:2px solid var(--green);color:var(--green);font-size:26px;margin-bottom:18px;
+  }
+  h1{font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:clamp(30px,6vw,44px);color:#F5F2E9;line-height:1.1}
+  h1 em{font-style:italic;color:var(--gold)}
+  .sub{color:var(--muted);margin-top:14px;font-size:16.5px}
+  /* video slot — lights up automatically when ../assets/precall.mp4 exists */
+  .vid{display:none;margin:30px 0 6px;position:relative;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 22px 70px rgba(0,0,0,.55)}
+  .vid.on{display:block}
+  .vid video{width:100%;display:block}
+  .vid .playcap{
+    position:absolute;left:0;right:0;bottom:0;padding:14px 18px;
+    background:linear-gradient(transparent,rgba(0,0,0,.75));
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--gold-light);
+    pointer-events:none;
+  }
+  .card{
+    background:var(--panel);border:1px solid var(--hairline);border-radius:10px;
+    padding:30px 32px;margin-top:26px;
+  }
+  .card h2{font-family:Georgia,serif;font-weight:500;font-size:22px;color:#F5F2E9;margin-bottom:16px}
+  .card ol{list-style:none;counter-reset:n}
+  .card li{
+    counter-increment:n;position:relative;padding:10px 0 10px 44px;
+    color:var(--muted);font-size:15.5px;border-top:1px solid rgba(156,150,138,.12);
+  }
+  .card li:first-child{border-top:none}
+  .card li:before{
+    content:counter(n);position:absolute;left:0;top:10px;
+    width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);
+    color:var(--gold);font-family:'IBM Plex Mono',monospace;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card li strong{color:var(--body);font-weight:600}
+  .note{
+    margin-top:22px;text-align:center;color:var(--muted);font-size:14px;line-height:1.7;
+  }
+  .note a{color:var(--gold);text-decoration:none}
+  footer{margin-top:auto;padding-top:40px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+  footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="brand">
+    <img src="../assets/retap-mark.png" alt="Retap Media">
+    <span>RETAP&nbsp;MEDIA</span>
+  </div>
+  <main>
+    <div class="booked">
+      <div class="tick">✓</div>
+      <h1>You're booked. We're already <em>working.</em></h1>
+      <p class="sub">Your confirmation email has the calendar invite and a reschedule link. Here's what happens between now and the call.</p>
+    </div>
+
+    <div class="vid" id="vid">
+      <video id="precall" controls preload="metadata" src="../assets/precall.mp4"></video>
+      <div class="playcap">▶ PRESS PLAY — WHO YOU'RE MEETING & WHAT TO EXPECT (2 MIN)</div>
+    </div>
+
+    <div class="card">
+      <h2>Before we get on, have four numbers handy:</h2>
+      <ol>
+        <li><strong>Lead count</strong> — roughly how many old or unworked leads are sitting in your CRM or lists.</li>
+        <li><strong>Cost per lead</strong> — what you typically pay for the leads you buy.</li>
+        <li><strong>Average job value</strong> — your typical revenue on a closed job.</li>
+        <li><strong>Close rate</strong> — how often a qualified prospect who actually sits ends up buying.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>What the call actually is:</h2>
+      <ol>
+        <li><strong>Your free 48-hour database audit review</strong> — we run your real numbers live, so the math means something to you instead of a generic case study.</li>
+        <li><strong>Thirty focused minutes</strong> — grab a quiet spot where you can think clearly about your own business.</li>
+        <li><strong>No pitch required</strong> — if the math can't support our written guarantee, we'll tell you that and part friends.</li>
+      </ol>
+    </div>
+
+    <p class="note">
+      Missing one of the numbers? No problem — we'll fill gaps with industry averages.<br>
+      Time stops working? Use the reschedule link in your email — your audit moves with you.<br>
+      Questions now: <a href="tel:+13212157267">(321) 215-7267</a> · <a href="mailto:preston@retapmedia.com">preston@retapmedia.com</a>
+    </p>
+  </main>
+  <footer><a href="https://retapmedia.com">retapmedia.com</a> · Retap Media LLC</footer>
+
+  <script>
+    /* The video slot activates itself when assets/precall.mp4 exists on this
+       host — drop the re-recorded file in the repo and this page lights up
+       with zero edits. Until then the checklist carries the page. */
+    fetch('../assets/precall.mp4', {method:'HEAD'}).then(function(r){
+      if (r.ok) document.getElementById('vid').classList.add('on');
+    }).catch(function(){});
+  </script>
+</body>
+</html>
