@@ -83,8 +83,9 @@
     </div>
 
     <div class="vid" id="vid">
-      <video id="precall" controls preload="metadata" poster="../assets/precall-poster.jpg" src="../assets/precall.mp4"></video>
-      <div class="playcap">▶ PRESS PLAY — WHO YOU'RE MEETING & WHAT TO EXPECT (2 MIN)</div>
+      <video id="precall" controls preload="metadata" muted autoplay playsinline poster="../assets/precall-poster.jpg" src="../assets/precall.mp4"></video>
+      <button id="unmute" type="button" style="position:absolute;top:14px;left:14px;z-index:2;display:none;align-items:center;gap:8px;background:rgba(10,10,11,.85);color:#F1D77E;border:1px solid #D4AF37;border-radius:999px;padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;cursor:pointer">🔊 TAP FOR SOUND</button>
+      <div class="playcap" id="playcap">WHO YOU'RE MEETING &amp; WHAT TO EXPECT (2 MIN)</div>
     </div>
 
     <div class="card">
@@ -119,7 +120,29 @@
        host — drop the re-recorded file in the repo and this page lights up
        with zero edits. Until then the checklist carries the page. */
     fetch('../assets/precall.mp4', {method:'HEAD'}).then(function(r){
-      if (r.ok) document.getElementById('vid').classList.add('on');
+      if (!r.ok) return;
+      document.getElementById('vid').classList.add('on');
+      var v = document.getElementById('precall');
+      var btn = document.getElementById('unmute');
+      /* Browsers only permit MUTED autoplay. Start silent; one tap unmutes
+         and restarts so the viewer catches the intro. Controls (incl. pause)
+         stay available the whole time. */
+      var p = v.play();
+      if (p && p.then) {
+        p.then(function(){ btn.style.display = 'flex'; })
+         .catch(function(){ /* autoplay blocked entirely: poster + native play button */ });
+      } else {
+        btn.style.display = 'flex';
+      }
+      btn.addEventListener('click', function(){
+        v.muted = false;
+        v.currentTime = 0;
+        v.play();
+        btn.style.display = 'none';
+      });
+      v.addEventListener('volumechange', function(){
+        if (!v.muted) btn.style.display = 'none';
+      });
     }).catch(function(){});
   </script>
 </body>
