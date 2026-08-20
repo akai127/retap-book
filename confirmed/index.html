@@ -38,6 +38,10 @@
   .vid{display:none;margin:30px 0 6px;position:relative;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 22px 70px rgba(0,0,0,.55)}
   .vid.on{display:block}
   .vid video{width:100%;display:block}
+  /* Rides the same switch as the video: hidden until the file is confirmed. */
+  .vidnote{display:none;margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+  .vidnote.on{display:block}
+  .vidnote a{color:var(--gold)}
   .vid .playcap{
     position:absolute;left:0;right:0;bottom:0;padding:14px 18px;
     background:linear-gradient(transparent,rgba(0,0,0,.75));
@@ -83,10 +87,13 @@
     </div>
 
     <div class="vid" id="vid">
-      <video id="precall" controls preload="metadata" muted autoplay playsinline poster="../assets/precall-poster.jpg" src="../assets/precall.mp4"></video>
+      <video id="precall" controls preload="metadata" muted autoplay playsinline poster="../assets/precall-poster.jpg" src="../assets/precall.mp4">
+        <track kind="captions" src="../assets/precall.vtt" srclang="en" label="English" default>
+      </video>
       <button id="unmute" type="button" style="position:absolute;top:14px;left:14px;z-index:2;display:none;align-items:center;gap:8px;background:rgba(10,10,11,.85);color:#F1D77E;border:1px solid #D4AF37;border-radius:999px;padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;cursor:pointer">🔊 TAP FOR SOUND</button>
       <div class="playcap" id="playcap">WHO YOU'RE MEETING &amp; WHAT TO EXPECT (2 MIN)</div>
     </div>
+    <p class="vidnote" id="vidnote">Captions are on by default. <a href="../assets/precall-transcript.txt">Read the transcript instead</a>.</p>
 
     <div class="card">
       <h2>Before we get on, have four numbers handy:</h2>
@@ -122,6 +129,7 @@
     fetch('../assets/precall.mp4', {method:'HEAD'}).then(function(r){
       if (!r.ok) return;
       document.getElementById('vid').classList.add('on');
+      document.getElementById('vidnote').classList.add('on');
       var v = document.getElementById('precall');
       var btn = document.getElementById('unmute');
       /* Browsers only permit MUTED autoplay. Start silent; one tap unmutes
