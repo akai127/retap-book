@@ -51,19 +51,27 @@
     font-family:'IBM Plex Mono',Consolas,monospace;font-size:12px;
     color:var(--muted);letter-spacing:.05em;line-height:2;
   }
-  footer a{color:var(--gold);text-decoration:none}
+  footer a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+  h1{font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:26px;color:#F5F2E9;text-align:center;padding:0 20px 6px}
+  /* The scheduler is a third-party iframe we can't audit, so the human
+     fallback sits next to it rather than only in the footer. */
+  .alt-path{text-align:center;color:var(--muted);font-size:13.5px;padding:14px 20px 0}
+  .alt-path a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+  a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 </style>
 </head>
 <body>
   <header>
-    <img src="assets/retap-mark.png" alt="Retap Media">
+    <img src="assets/retap-mark.png" alt="">
     <span class="bn">RETAP&nbsp;MEDIA</span>
   </header>
-  <p class="lede">Pick a time below — it's your <strong>free 48-hour database audit</strong> review. Thirty minutes, your real numbers, no pitch required.</p>
   <main>
+    <h1>Book your audit call</h1>
+    <p class="lede">Pick a time below — it's your <strong>free 48-hour database audit</strong> review. Thirty minutes, your real numbers, no pitch required.</p>
     <div class="frame">
       <iframe src="https://api.leadconnectorhq.com/widget/booking/oNMm30xnGS33NqVeoQ6q" title="Book your audit call"></iframe>
     </div>
+    <p class="alt-path">Trouble with the scheduler? Call <a href="tel:+13212157267">(321) 215-7267</a> or email <a href="mailto:preston@retapmedia.com">preston@retapmedia.com</a> and we'll book it for you.</p>
   </main>
   <footer>
     Can't find a time that works? Call <a href="tel:+13212157267">(321) 215-7267</a> or email <a href="mailto:preston@retapmedia.com">preston@retapmedia.com</a><br>
