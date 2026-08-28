@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Your Audit Call — Retap Media</title>
-<meta name="description" content="Pick a time for your free 48-hour database audit call with Retap Media.">
+<title>Book Your Call — Retap Media</title>
+<meta name="description" content="Pick a time for your free 30-minute call with Retap Media.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="assets/retap-favicon.png">
 <style>
@@ -37,15 +37,22 @@
   }
   .lede strong{color:var(--body);font-weight:500}
   main{
-    flex:1;display:flex;justify-content:center;align-items:stretch;
-    padding:0 12px 12px;
+    flex:1;display:flex;flex-direction:column;align-items:center;
+    padding:0 12px 12px;width:100%;
   }
   .frame{
     background:#fff;border-radius:12px;overflow:hidden;
     width:min(820px,100%);
     box-shadow:0 24px 80px rgba(0,0,0,.55);
+    flex:1;display:flex;flex-direction:column;
   }
-  .frame iframe{width:100%;height:100%;min-height:640px;border:none;display:block}
+  .frame iframe{width:100%;flex:1;min-height:700px;border:none;display:block}
+  @media (max-width:480px){
+    h1{font-size:22px}
+    .lede{font-size:14px}
+    .frame{border-radius:10px}
+    .frame iframe{min-height:760px}
+  }
   footer{
     text-align:center;padding:16px 20px 26px;
     font-family:'IBM Plex Mono',Consolas,monospace;font-size:12px;
@@ -66,8 +73,8 @@
     <span class="bn">RETAP&nbsp;MEDIA</span>
   </header>
   <main>
-    <h1>Book your audit call</h1>
-    <p class="lede">Pick a time below — it's your <strong>free 48-hour database audit</strong> review. Thirty minutes, your real numbers, no pitch required.</p>
+    <h1>Book your call</h1>
+    <p class="lede">Pick a time below — <strong>thirty minutes, your real numbers</strong>, no pitch required.</p>
     <div class="frame">
       <iframe src="https://api.leadconnectorhq.com/widget/booking/oNMm30xnGS33NqVeoQ6q" title="Book your audit call"></iframe>
     </div>
